@@ -20,8 +20,6 @@ function Modal({ open, onClose, data }) {
       });
   }, []);
 
-  // console.log(cast)
-
   if (!open) return null;
 
   return ReactDom.createPortal(
