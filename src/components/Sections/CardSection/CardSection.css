@@ -1,0 +1,38 @@
+:root {
+    --color-black: #000000;
+    --color-white: #ffffff;
+    --color-gray: #f2f2f2;
+    --color-blue: #525d69;
+}
+
+.card-section {
+    max-width: 1280px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 0 auto;
+    gap: 2rem;
+    padding: 2rem 0;
+    color: var(--color-blue);
+    position: relative;
+}
+
+.card:hover {
+    background-color: var(--color-blue);
+    color: var(--color-white);
+}
+
+.card-section img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 0.8rem;
+}
+
+@media (max-width: 600px) {
+    .card-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: min-content;
+    }
+
+}
