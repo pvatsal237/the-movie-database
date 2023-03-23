@@ -1,0 +1,25 @@
+.image img {
+    border-radius: 0.8rem;
+    width: 22em;
+    height: 32em;
+}
+
+.people img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+@media (max-width:600px) {
+    .image img {
+        display: none;
+    }
+
+    .people img {
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+    }
+
+}

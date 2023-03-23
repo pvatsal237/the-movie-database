@@ -4,6 +4,12 @@
     --color-gray: #f2f2f2;
 }
 
+.card-top {
+    width: 22em;
+    height: 32em;
+    display: flex;
+}
+
 .card-bottom {
     font-size: 1.2rem;
 }

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import ReactDom from 'react-dom';
-import { Paragraph, Rating, Title } from '../../Atoms';
+import { Paragraph, Rating, Title, Image } from '../../Atoms';
 import './Modal.css';
 
 function Modal({ open, onClose, data }) {
   const [cast, setCast] = useState([]);
+
+  console.log(data);
 
   useEffect(() => {
     fetch(
@@ -14,11 +16,11 @@ function Modal({ open, onClose, data }) {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-
         setCast(data);
       });
-  }, []);
+  }, [cast]);
+
+  console.log(`cast`, cast)
 
   if (!open) return null;
 
@@ -29,19 +31,22 @@ function Modal({ open, onClose, data }) {
         <div className="modal-img">
           {
             <div className="image">
-              {data.backdrop_path !== null ? (
-                <img
-                  src={`https://image.tmdb.org/t/p/w342/${data.poster_path}`}
+              {data.poster_path == null ? (
+                <Image
+                  source={`https://movies.fidalgo.dev/static/media/nothing.4c58037b.svg`}
                 />
               ) : (
-                <img
-                  src={`https://movies.fidalgo.dev/static/media/nothing.4c58037b.svg`}
+                <Image
+                  source={`https://image.tmdb.org/t/p/w342/${data.poster_path}`}
                 />
               )}
             </div>
           }
         </div>
         <div className="info">
+          <div className="close-btn-mobile">
+            <button onClick={onClose}>Back</button>
+          </div>
           <div className="modal-title">
             <Title text={data.title} size="h1" />
           </div>
@@ -76,14 +81,21 @@ function Modal({ open, onClose, data }) {
             ))}
           </div> */}
           <div className="people">
-            {cast.cast.map((ele, index) => (
-              <img
-                src={`https://image.tmdb.org/t/p/w185/${ele.profile_path}`}
-                key={index}
-              />
-            ))}
+            {cast.cast.map((ele, index) =>
+              ele.profile_path != null ? (
+                <img
+                  src={`https://image.tmdb.org/t/p/w185${ele.profile_path}`}
+                  key={index}
+                />
+              ) : (
+                <img
+                  src={`https://movies.fidalgo.dev/static/media/person.fdbc4613.svg`}
+                  key={index}
+                />
+              )
+            )}
           </div>
-          <div className="close-btn">
+          <div className="close-btn-desktop">
             <button onClick={onClose}>Back</button>
           </div>
         </div>
